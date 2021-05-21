@@ -8,6 +8,15 @@ const initialState = {
 export const authReducer = (state = initialState, action) => {
   switch (action.type) {
     // Login
+    case 'SIGN_UP': {
+      return {
+        // State
+        ...state,
+        // Redux Store
+        Token: action.Token,
+      };
+    }
+    // Login
     case 'LOGIN': {
       ToastService('success', 'Logged in Successfully', true)
       return {

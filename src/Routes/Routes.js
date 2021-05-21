@@ -6,6 +6,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import SignInScreen from '../screens/authentication/SignInScreen';
 import SignUpScreen from '../screens/authentication/SignUpScreen';
 import PreviewSignupInfo from '../screens/authentication/PreviewSignupInfo'
+import OTPScreen from '../screens/authentication/OTPScreen'
 
 import ProfileScreen from '../screens/profile/ProfileScreen';
 
@@ -24,6 +25,8 @@ const Routes = ({Token}) => {
                         <Stack.Screen name="SignInScreen" component={SignInScreen} />
                         <Stack.Screen name="SignUpScreen" component={SignUpScreen} />
                         <Stack.Screen name="PreviewSignupInfo" component={PreviewSignupInfo} />
+                        <Stack.Screen name="OTPScreen" component={OTPScreen} />
+
                     </Stack.Navigator>
 
                 ) : (

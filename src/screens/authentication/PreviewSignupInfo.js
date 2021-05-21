@@ -9,8 +9,11 @@ import {
 
 import TextPreview from '../../components/TextPreview';
 import ImagePreview from '../../components/ImagePreview';
+import apis from '../../apis/apis';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-const PreviewSignupInfo = ({ navigation, route }) => {
+const PreviewSignupInfo = ({ navigation, route, reduxGenerateOTP }) => {
 
   const UserData = route.params;
   return (
@@ -28,8 +31,6 @@ const PreviewSignupInfo = ({ navigation, route }) => {
           <TextPreview label={"City"} text={UserData.city} />
           <TextPreview label={"Country"} text={UserData.country} />
           <ImagePreview label={"photo"} photo={UserData.photo} />
-
-
         </View>
         <View style={styles.btnDiv}>
           <TouchableOpacity onPress={() => navigation.navigate('SignUpScreen')} style={styles.backBtn}>
@@ -37,7 +38,12 @@ const PreviewSignupInfo = ({ navigation, route }) => {
               Back to Sign up
         </Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.navigate('SignUpScreen')} style={styles.signUpBtn}>
+          <TouchableOpacity onPress={() => {
+            reduxGenerateOTP(UserData.name);
+            navigation.navigate('OTPScreen', { UserData: UserData });
+          }
+          }
+            style={styles.signUpBtn}>
             <Text style={styles.signUpBtnText}>
               Sign Up
         </Text>
@@ -64,6 +70,15 @@ const styles = StyleSheet.create({
   title: { textAlign: 'center', fontSize: 30, backgroundColor: '#041e42', padding: '5%', color: 'white', width: '100%', borderTopLeftRadius: 10, borderTopRightRadius: 10 }
 });
 
-export default PreviewSignupInfo;
+const mapDispatchToProps = (dispatch) =>
+  bindActionCreators(
+    {
+      reduxGenerateOTP: (name) =>
+        apis.SendOTP(name),
+    },
+    dispatch,
+  );
+
+export default connect(null, mapDispatchToProps)(PreviewSignupInfo);
 
 
