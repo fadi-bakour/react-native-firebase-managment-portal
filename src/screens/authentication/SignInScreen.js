@@ -7,8 +7,20 @@ import {
   ScrollView
 } from 'react-native';
 import TextInput from '../../components/TextInput';
+import apis from '../../apis/apis'
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
-const SignInScreen = ({ navigation }) => {
+const mapDispatchToProps = (dispatch) =>
+  bindActionCreators(
+    {
+      reduxSignIn: (email, password) =>
+        apis.loginAuth(email, password),
+    },
+    dispatch,
+  );
+
+const SignInScreen = ({ navigation, reduxSignIn }) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   return (
@@ -22,7 +34,7 @@ const SignInScreen = ({ navigation }) => {
       </Text>
         <TextInput placeholder="Email" onChange={setEmail} icon={{ type: 'font-awesome', name: 'envelope', color: 'black' }} secureTextEntry={false} />
         <TextInput placeholder="Password" onChange={setPassword} icon={{ type: 'font-awesome', name: 'key', color: 'black' }} secureTextEntry={true} />
-        <TouchableOpacity style={styles.btnDiv} onPress={() => { console.log('login') }}>
+        <TouchableOpacity style={styles.btnDiv} onPress={() => { reduxSignIn(email, password) }}>
           <Text style={styles.btn}>Log in</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.SignUpDiv} onPress={() => navigation.navigate('SignUpScreen')}>
@@ -50,5 +62,5 @@ const styles = StyleSheet.create({
   SignUp: { color: 'black', alignSelf: "center" }
 });
 
-export default SignInScreen;
+export default connect(null, mapDispatchToProps)(SignInScreen);
 

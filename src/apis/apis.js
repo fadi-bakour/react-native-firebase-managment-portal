@@ -1,6 +1,6 @@
 import ToastService from '../services/ToastService';
 import { SaveOtp } from '../actions/OTPActions';
-import { SignUp } from '../actions/AuthActions';
+import { SignUp, Login } from '../actions/AuthActions';
 import auth from '@react-native-firebase/auth';
 import database from '@react-native-firebase/database';
 import storage from '@react-native-firebase/storage';
@@ -12,9 +12,9 @@ class Apis {
         Data = UserData.UserData;
         return (dispatch) => {
             if (number != OTP) {
-                ToastService('error', 'Please fill all inputs');
+                ToastService('error', 'OTP does not match');
             } else {
-                ToastService('success', 'Signed Up successfully', true);
+                ToastService('success', 'Welcome to our family!', true);
                 auth().createUserWithEmailAndPassword(Data.email, Data.password).then((res) => {
                     dispatch(SignUp(res.user.uid));
                 }
@@ -23,7 +23,7 @@ class Apis {
                         let reference = storage().ref('users/' + auth().currentUser['uid'] + '/' + imageName);
                         let task = reference.putFile(path);
                         task.then(() => {
-                            storage().ref('users/' + auth().currentUser['uid'] + '/new-upload').getDownloadURL().then((res) => {
+                            storage().ref('users/' + auth().currentUser['uid'] + '/identification').getDownloadURL().then((res) => {
                                 const test = res;
                                 database()
                                     .ref('/users/' + auth().currentUser['uid'])
@@ -46,12 +46,11 @@ class Apis {
                     UploadData(Data.photo, 'new-upload', Data)
                 }).catch((err) => {
                     console.log(err);
-                    ToastService('error', err);
+                    ToastService('error', 'Something Went wrong!');
                 })
             }
         };
     };
-
     SendOTP = (name) => {
         return (dispatch) => {
 
@@ -66,6 +65,17 @@ class Apis {
             });
 
             dispatch(SaveOtp(OTP));
+        };
+    };
+    loginAuth = (email, password) => {
+        return (dispatch) => {
+            auth().signInWithEmailAndPassword(email, password).then((res) => {
+                ToastService('success', 'Logged in Successfully');
+                dispatch(Login(res.user.uid));
+            }).catch((err) => {
+                console.log(err);
+                ToastService('error', 'Something Went wrong!');
+            })
         };
     };
 }
