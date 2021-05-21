@@ -27,7 +27,6 @@ export const authReducer = (state = initialState, action) => {
     }
     //SignOut
     case 'LOG_OUT': {
-      ToastService('success', 'Signed Out Successfully', true)
       return {
         // State
         state,

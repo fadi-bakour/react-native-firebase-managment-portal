@@ -8,7 +8,7 @@ import SignUpScreen from '../screens/authentication/SignUpScreen';
 import PreviewSignupInfo from '../screens/authentication/PreviewSignupInfo'
 import OTPScreen from '../screens/authentication/OTPScreen'
 
-import ProfileScreen from '../screens/profile/ProfileScreen';
+import DrawerNav from './DrawerNav';
 
 import { connect } from 'react-redux';
 
@@ -16,7 +16,7 @@ import { connect } from 'react-redux';
 
 const Stack = createStackNavigator();
 
-const Routes = ({Token}) => {
+const Routes = ({ Token }) => {
     return (
         <NavigationContainer>
             {Token == null ?
@@ -30,9 +30,7 @@ const Routes = ({Token}) => {
                     </Stack.Navigator>
 
                 ) : (
-                    <Stack.Navigator headerMode="none">
-                        <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
-                    </Stack.Navigator>
+                    <DrawerNav />
                 )
             }
         </NavigationContainer >

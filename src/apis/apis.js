@@ -1,6 +1,6 @@
 import ToastService from '../services/ToastService';
 import { SaveOtp } from '../actions/OTPActions';
-import { SignUp, Login } from '../actions/AuthActions';
+import { SignUp, Login, LogOut } from '../actions/AuthActions';
 import auth from '@react-native-firebase/auth';
 import database from '@react-native-firebase/database';
 import storage from '@react-native-firebase/storage';
@@ -70,8 +70,18 @@ class Apis {
     loginAuth = (email, password) => {
         return (dispatch) => {
             auth().signInWithEmailAndPassword(email, password).then((res) => {
-                ToastService('success', 'Logged in Successfully');
+                ToastService('success', 'Logged in Successfully', true);
                 dispatch(Login(res.user.uid));
+            }).catch((err) => {
+                console.log(err);
+                ToastService('error', 'Something Went wrong!');
+            })
+        };
+    };
+    logOutAuth = () => {
+        return (dispatch) => {
+            auth().signOut().then((res) => {
+                dispatch(LogOut());
             }).catch((err) => {
                 console.log(err);
                 ToastService('error', 'Something Went wrong!');
