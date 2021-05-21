@@ -6,9 +6,9 @@ import {
   TouchableOpacity,
   ScrollView
 } from 'react-native';
-import { Input } from 'react-native-elements';
+import TextInput from '../../components/TextInput';
 
-const SignInScreen = ({ navigation, reduxLogin }) => {
+const SignInScreen = ({ navigation }) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   return (
@@ -20,24 +20,9 @@ const SignInScreen = ({ navigation, reduxLogin }) => {
         <Text style={styles.SubTitle} >
           Log in
       </Text>
-        <View style={styles.input}>
-          <Input
-            placeholder="Email"
-            leftIcon={{ type: 'font-awesome', name: 'envelope', color: 'black' }}
-            onChange={setEmail}
-            inputContainerStyle={{ borderBottomWidth: 0 }}
-          />
-        </View>
-        <View style={styles.input}>
-          <Input
-            placeholder="Password"
-            leftIcon={{ type: 'font-awesome', name: 'key', color: 'black' }}
-            onChange={setPassword}
-            secureTextEntry={true}
-            inputContainerStyle={{ borderBottomWidth: 0 }}
-          />
-        </View>
-        <TouchableOpacity style={styles.btnDiv} onPress={() => {console.log('login')}}>
+        <TextInput placeholder="Email" onChange={setEmail} icon={{ type: 'font-awesome', name: 'envelope', color: 'black' }} secureTextEntry={false} />
+        <TextInput placeholder="Password" onChange={setPassword} icon={{ type: 'font-awesome', name: 'key', color: 'black' }} secureTextEntry={true} />
+        <TouchableOpacity style={styles.btnDiv} onPress={() => { console.log('login') }}>
           <Text style={styles.btn}>Log in</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.SignUpDiv} onPress={() => navigation.navigate('SignUpScreen')}>
@@ -59,7 +44,6 @@ const styles = StyleSheet.create({
   },
   Title: { color: 'black', alignSelf: 'center', fontSize: 20, marginTop: '10%' },
   SubTitle: { color: 'black', alignSelf: 'center', fontSize: 15 },
-  input: { height: 50, width: '90%', alignSelf: 'center', marginTop: '5%', borderRadius: 5, borderWidth: 1 },
   btnDiv: { width: '90%', alignItems: 'center', backgroundColor: '#041e42', alignSelf: 'center', height: 50, justifyContent: 'center', marginTop: '10%', borderRadius: 5 },
   btn: { color: 'white', fontSize: 22, fontWeight: '500' },
   SignUpDiv: { alignSelf: 'center', marginTop: '5%' },

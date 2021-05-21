@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "249009726807",
+    "firebase_url": "https://userproductmanagementportal-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "userproductmanagementportal",
+    "storage_bucket": "userproductmanagementportal.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:249009726807:android:5f8be65e7811887c314a12",
+        "android_client_info": {
+          "package_name": "com.userproductmanagementportal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "249009726807-2t9646g1bamfun536q1jdud67kor8ik9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-jG6LZmcRdWAiHNVQOPTIJEt5SUILElg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "249009726807-2t9646g1bamfun536q1jdud67kor8ik9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
