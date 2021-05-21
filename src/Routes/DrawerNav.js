@@ -5,6 +5,9 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import ProductsScreen from '../screens/profile/ProductsScreen';
 import ProfileScreen from '../screens/profile/ProfileScreen'
 import MyProductsScreen from '../screens/profile/MyProductsScreen'
+import CreateProductScreen from '../screens/profile/CreateProductScreen'
+
+
 import CustomSidebarMenu from "../components/CustomSidebarMenu";
 
 
@@ -15,6 +18,7 @@ const DrawerNav = () => {
             <Drawer.Screen name="Home" component={ProductsScreen} />
             <Drawer.Screen name="Profile" component={ProfileScreen} />
             <Drawer.Screen name="MyProducts" component={MyProductsScreen} />
+            <Drawer.Screen name="CreateProduct" component={CreateProductScreen} />
         </Drawer.Navigator>
     )
 }

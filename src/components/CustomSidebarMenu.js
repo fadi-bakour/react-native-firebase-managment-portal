@@ -83,6 +83,22 @@ const CustomSidebarMenu = ({ reduxLogOut, navigation }) => {
             style={styles.itemStyle}
           />
         </View>
+
+        <View style={{ flexDirection: "row" }}>
+          <Icon
+            name="plus"
+            type="font-awesome"
+            color="white"
+            style={styles.iconStyle}
+          />
+          <DrawerItem
+            label="CreateProduct"
+            onPress={() => navigation.navigate("CreateProduct")}
+            labelStyle={styles.labelStyle}
+            style={styles.itemStyle}
+          />
+        </View>
+
         <View style={{ flexDirection: "row" }}>
           <Icon
             name="sign-out"

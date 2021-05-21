@@ -105,8 +105,6 @@ class Apis {
 
     UpdateUserData = (UserData) => {
         Data = UserData;
-        console.log(Data.path);
-        console.log(UserData)
         const UploadData = (path, imageName) => {
             let reference = storage().ref('users/' + auth().currentUser['uid'] + '/' + imageName);
             let task = reference.putFile(path);
@@ -135,6 +133,33 @@ class Apis {
             }).catch((e) => console.log('uploading image error => ', e));
         }
         UploadData(Data.path, 'identification', Data);
+    }
+
+    CreateUserProduct = (ProductData) => {
+        const Data = ProductData;
+        const UploadData = (path, productName) => {
+            let reference = storage().ref('products/' + auth().currentUser['uid'] + '/' + productName);
+            let task = reference.putFile(path);
+            task.then(() => {
+                storage().ref('products/' + auth().currentUser['uid'] + '/' + productName).getDownloadURL().then((res) => {
+                    const Url = res;
+                    database()
+                        .ref('/products/' + auth().currentUser['uid'] + '/' + productName)
+                        .set({
+                            title: Data.title,
+                            description: Data.description,
+                            Url: Url,
+                            path: Data.path
+                        })
+                    ToastService('success', 'Updated Successfully!', true);
+
+                }).catch((err) => {
+                    ToastService('error', 'Something Went wrong!');
+                    console.log(err)
+                });
+            }).catch((e) => console.log('uploading image error => ', e));
+        }
+        UploadData(Data.photo, Data.title);
     }
 }
 

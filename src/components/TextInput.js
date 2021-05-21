@@ -2,7 +2,7 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Input } from 'react-native-elements';
 
-const TextInput = ({ placeholder, icon, onChange, secureTextEntry, value, defaultValue }) => {
+const TextInput = ({ placeholder, icon = false, onChange, secureTextEntry, value, defaultValue }) => {
     return (
         <View style={styles.input}>
             <Input
