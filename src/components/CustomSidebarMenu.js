@@ -17,6 +17,7 @@ import { Icon } from "react-native-elements";
 import apis from '../apis/apis'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { cos } from "react-native-reanimated";
 
 
 const mapDispatchToProps = (dispatch) =>
@@ -29,12 +30,12 @@ const mapDispatchToProps = (dispatch) =>
   );
 
 
-const CustomSidebarMenu = ({ props, reduxLogOut }) => {
+const CustomSidebarMenu = ({ reduxLogOut, navigation }) => {
   return (
     <SafeAreaView
       style={styles.safeArea}
     >
-      <DrawerContentScrollView {...props}>
+      <DrawerContentScrollView>
         <Text style={styles.title}>
           Main
         </Text>
@@ -48,7 +49,7 @@ const CustomSidebarMenu = ({ props, reduxLogOut }) => {
 
           <DrawerItem
             label="home"
-            onPress={() => props.navigation.navigate("ProductsScreen")}
+            onPress={() => navigation.navigate("Home")}
             labelStyle={styles.labelStyle}
             style={styles.itemStyle}
           />
@@ -63,7 +64,7 @@ const CustomSidebarMenu = ({ props, reduxLogOut }) => {
           />
           <DrawerItem
             label="Profile"
-            onPress={() => props.navigation.navigate("ProfileScreen")}
+            onPress={() => navigation.navigate("Profile")}
             labelStyle={styles.labelStyle}
             style={styles.itemStyle}
           />
@@ -77,7 +78,7 @@ const CustomSidebarMenu = ({ props, reduxLogOut }) => {
           />
           <DrawerItem
             label="MyProducts"
-            onPress={() => props.navigation.navigate("MyProductsScreen")}
+            onPress={() => navigation.navigate("MyProducts")}
             labelStyle={styles.labelStyle}
             style={styles.itemStyle}
           />

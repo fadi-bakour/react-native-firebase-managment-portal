@@ -32,8 +32,8 @@ const SignInScreen = ({ navigation, reduxSignIn }) => {
         <Text style={styles.SubTitle} >
           Log in
       </Text>
-        <TextInput placeholder="Email" onChange={setEmail} icon={{ type: 'font-awesome', name: 'envelope', color: 'black' }} secureTextEntry={false} />
-        <TextInput placeholder="Password" onChange={setPassword} icon={{ type: 'font-awesome', name: 'key', color: 'black' }} secureTextEntry={true} />
+        <TextInput placeholder="Email" onChange={setEmail} defaultValue={email} value={email} icon={{ type: 'font-awesome', name: 'envelope', color: 'black' }} secureTextEntry={false} />
+        <TextInput placeholder="Password" onChange={setPassword} defaultValue={password} value={password} icon={{ type: 'font-awesome', name: 'key', color: 'black' }} secureTextEntry={true} />
         <TouchableOpacity style={styles.btnDiv} onPress={() => { reduxSignIn(email, password) }}>
           <Text style={styles.btn}>Log in</Text>
         </TouchableOpacity>

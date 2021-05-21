@@ -8,7 +8,6 @@ import storage from '@react-native-firebase/storage';
 
 class Apis {
     signUpAuth = ({ number, OTP, UserData }) => {
-        let imagePathOnCloud = 'test';
         Data = UserData.UserData;
         return (dispatch) => {
             if (number != OTP) {
@@ -24,7 +23,7 @@ class Apis {
                         let task = reference.putFile(path);
                         task.then(() => {
                             storage().ref('users/' + auth().currentUser['uid'] + '/identification').getDownloadURL().then((res) => {
-                                const test = res;
+                                const Url = res;
                                 database()
                                     .ref('/users/' + auth().currentUser['uid'])
                                     .set({
@@ -36,14 +35,15 @@ class Apis {
                                         country: Data.country,
                                         email: Data.email,
                                         password: Data.password,
-                                        photo: test
+                                        photo: Url,
+                                        path: Data.photo
                                     })
                             }).catch((err) => {
                                 console.log(err)
                             });
                         }).catch((e) => console.log('uploading image error => ', e));
                     }
-                    UploadData(Data.photo, 'new-upload', Data)
+                    UploadData(Data.photo, 'identification', Data)
                 }).catch((err) => {
                     console.log(err);
                     ToastService('error', 'Something Went wrong!');
@@ -51,6 +51,7 @@ class Apis {
             }
         };
     };
+
     SendOTP = (name) => {
         return (dispatch) => {
 
@@ -67,6 +68,7 @@ class Apis {
             dispatch(SaveOtp(OTP));
         };
     };
+
     loginAuth = (email, password) => {
         return (dispatch) => {
             auth().signInWithEmailAndPassword(email, password).then((res) => {
@@ -78,6 +80,7 @@ class Apis {
             })
         };
     };
+
     logOutAuth = () => {
         return (dispatch) => {
             auth().signOut().then((res) => {
@@ -88,6 +91,51 @@ class Apis {
             })
         };
     };
+
+    userData = () => {
+        return (async () => {
+            return await database()
+                .ref('/users/' + auth().currentUser['uid'])
+                .once('value')
+                .then(snapshot => {
+                    return snapshot.val();
+                });
+        })();
+    };
+
+    UpdateUserData = (UserData) => {
+        Data = UserData;
+        console.log(Data.path);
+        console.log(UserData)
+        const UploadData = (path, imageName) => {
+            let reference = storage().ref('users/' + auth().currentUser['uid'] + '/' + imageName);
+            let task = reference.putFile(path);
+            task.then(() => {
+                storage().ref('users/' + auth().currentUser['uid'] + '/identification').getDownloadURL().then((res) => {
+                    const Url = res;
+                    database()
+                        .ref('/users/' + auth().currentUser['uid'])
+                        .update({
+                            name: Data.name,
+                            userName: Data.userName,
+                            address: Data.address,
+                            postcode: Data.postcode,
+                            city: Data.city,
+                            country: Data.country,
+                            email: Data.email,
+                            Url: Url,
+                            path: Data.path
+                        })
+                    ToastService('success', 'Updated Successfully!', true);
+
+                }).catch((err) => {
+                    ToastService('error', 'Something Went wrong!');
+                    console.log(err)
+                });
+            }).catch((e) => console.log('uploading image error => ', e));
+        }
+        UploadData(Data.path, 'identification', Data);
+    }
 }
 
 const apis = new Apis(); // TODO: create instance in another place

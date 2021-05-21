@@ -2,15 +2,17 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Input } from 'react-native-elements';
 
-const TextInput = ({ placeholder, icon, onChange, secureTextEntry }) => {
+const TextInput = ({ placeholder, icon, onChange, secureTextEntry, value, defaultValue }) => {
     return (
         <View style={styles.input}>
             <Input
                 placeholder={placeholder}
                 leftIcon={icon}
-                onChangeText={onChange}
+                onChangeText={(value) => { onChange(value) }}
                 inputContainerStyle={{ borderBottomWidth: 0 }}
                 secureTextEntry={secureTextEntry}
+                value={value}
+                defaultValue={defaultValue}
             />
         </View>
     )
