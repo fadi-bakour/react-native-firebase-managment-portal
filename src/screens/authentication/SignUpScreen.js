@@ -34,6 +34,7 @@ const SignUpScreen = ({ navigation }) => {
       </Text>
 
         <TextInput placeholder="Full Name" onChange={setName} icon={{ type: 'font-awesome', name: 'user', color: 'black' }} secureTextEntry={false} />
+        <TextInput placeholder="Email" onChange={setEmail} icon={{ type: 'font-awesome', name: 'envelope', color: 'black' }} secureTextEntry={false} />
         <TextInput placeholder="User Name" onChange={setUserName} icon={{ type: 'font-awesome', name: 'user', color: 'black' }} secureTextEntry={false} />
         <TextInput placeholder="Address" onChange={setAddress} icon={{ type: 'font-awesome', name: 'address-card', color: 'black' }} secureTextEntry={false} />
         <TextInput placeholder="Postcode" onChange={setPostcode} icon={{ type: 'font-awesome', name: 'location-arrow', color: 'black' }} secureTextEntry={false} />
@@ -41,7 +42,6 @@ const SignUpScreen = ({ navigation }) => {
         <TextInput placeholder="Country" onChange={setCountry} icon={{ type: 'font-awesome', name: 'envelope', color: 'black' }} secureTextEntry={false} />
         <TextInput placeholder="Password" onChange={setPassword} icon={{ type: 'font-awesome', name: 'key', color: 'black' }} secureTextEntry={true} />
         <TextInput placeholder="Conform Password" onChange={setC_Password} icon={{ type: 'font-awesome', name: 'key', color: 'black' }} secureTextEntry={true} />
-        <TextInput placeholder="Email" onChange={setEmail} icon={{ type: 'font-awesome', name: 'envelope', color: 'black' }} secureTextEntry={false} />
         <ImageInput photo={photo} setPhoto={setPhoto} />
 
         <TouchableOpacity style={styles.btnDiv}

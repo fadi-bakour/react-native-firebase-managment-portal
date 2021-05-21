@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
     StyleSheet,
     Text,
@@ -7,8 +7,9 @@ import {
     Image
 } from 'react-native';
 import ImagePicker from 'react-native-image-crop-picker';
+import ToastService from '../services/ToastService'
 
-function ImageInput({ photo, setPhoto }) {
+const ImageInput = ({ photo, setPhoto }) => {
     return (
         <View>
             {photo == null ? (
