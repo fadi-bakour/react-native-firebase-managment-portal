@@ -10,6 +10,7 @@ import apis from '../../apis/apis'
 import TextInput from '../../components/TextInput';
 import ImageInput from '../../components/ImageInput';
 import ToastService from '../../services/ToastService';
+import Header from '../../components/Header';
 
 
 const ProfileScreen = ({ navigation }) => {
@@ -65,6 +66,8 @@ const ProfileScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+      <Header navigation={navigation} />
+
       <ScrollView>
         <Text style={styles.Title}>
           Edit your information and click save

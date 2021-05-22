@@ -3,8 +3,9 @@ import { View, Text, FlatList, StyleSheet } from 'react-native'
 import apis from '../../apis/apis'
 import Product from '../../components/Product';
 import { useIsFocused } from '@react-navigation/native';
+import Header from '../../components/Header';
 
-const MyProductsScreen = () => {
+const MyProductsScreen = ({ navigation }) => {
     const [item, setItems] = useState()
     const isFocused = useIsFocused();
 
@@ -22,19 +23,29 @@ const MyProductsScreen = () => {
     }, [isFocused]);
 
     return (
+
         <View style={styles.container}>
+            <Header navigation={navigation} />
+
             <Text style={styles.Title}>My Products</Text>
-            <FlatList
-                nestedScrollEnabled
-                data={item}
-                keyExtractor={item => item.title}
-                renderItem={({ item }) => {
-                    return (
-                        <Product item={item} />
-                    )
-                }
-                }
-            />
+            {!item ?
+                <FlatList
+                    nestedScrollEnabled
+                    data={item}
+                    keyExtractor={item => item.title}
+                    renderItem={({ item }) => {
+                        return (
+                            <Product item={item} />
+                        )
+                    }
+                    }
+                />
+
+                :
+                <Text style={styles.Title}>No Products, please add from drawer</Text>
+
+            }
+
         </View>
     )
 }

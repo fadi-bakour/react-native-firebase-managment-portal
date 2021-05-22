@@ -9,7 +9,6 @@ import PreviewSignupInfo from '../screens/authentication/PreviewSignupInfo'
 import OTPScreen from '../screens/authentication/OTPScreen'
 
 import DrawerNav from './DrawerNav';
-
 import { connect } from 'react-redux';
 
 

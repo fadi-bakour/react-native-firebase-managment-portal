@@ -4,8 +4,9 @@ import { ScrollView } from 'react-native-gesture-handler';
 import apis from '../../apis/apis'
 import Product from '../../components/Product';
 import { useIsFocused } from '@react-navigation/native';
+import Header from '../../components/Header';
 
-const ProductsScreen = () => {
+const ProductsScreen = ({navigation}) => {
     const [item, setItems] = useState()
     const isFocused = useIsFocused();
 
@@ -28,8 +29,9 @@ const ProductsScreen = () => {
 
     return (
         <View style={styles.container}>
+            <Header navigation={navigation} />
             <Text style={styles.Title}>All Users Products</Text>
-            <FlatList
+            {item ? <FlatList
                 nestedScrollEnabled
                 data={item}
                 keyExtractor={item => item.title}
@@ -39,7 +41,10 @@ const ProductsScreen = () => {
                     )
                 }
                 }
-            />
+            /> :
+                <Text style={styles.Title}>No Products, please add from drawer</Text>
+            }
+
         </View>
     )
 }

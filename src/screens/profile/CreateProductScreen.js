@@ -13,6 +13,7 @@ import TextInput from '../../components/TextInput';
 import ProductImage from '../../components/ProductImage';
 import { useIsFocused } from '@react-navigation/native';
 import ToastService from '../../services/ToastService';
+import Header from '../../components/Header';
 
 const CreateProductScreen = ({ navigation }) => {
     const isFocused = useIsFocused();
@@ -25,7 +26,7 @@ const CreateProductScreen = ({ navigation }) => {
 
     function CreateProduct(data) {
 
-        if (data.title.trim() != '' && data.description.trim() != ''  && data.photo != null && data.photo.trim() != '' ) {
+        if (data.title.trim() != '' && data.description.trim() != '' && data.photo != null && data.photo.trim() != '') {
             apis.CreateUserProduct(data);
         } else {
             ToastService('error', 'please fill all required information');
@@ -40,6 +41,7 @@ const CreateProductScreen = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
+            <Header navigation={navigation} />
             <ScrollView>
                 <Text style={styles.Title}>
                     Create New Product
