@@ -6,7 +6,7 @@ import Product from '../../components/Product';
 import { useIsFocused } from '@react-navigation/native';
 import Header from '../../components/Header';
 
-const ProductsScreen = ({navigation}) => {
+const ProductsScreen = ({ navigation }) => {
     const [item, setItems] = useState()
     const isFocused = useIsFocused();
 
@@ -50,7 +50,11 @@ const ProductsScreen = ({navigation}) => {
 }
 
 const styles = StyleSheet.create({
-    container: { flex: 1, padding: '5%' },
+    container: {
+        flex: 1,
+        paddingTop: '10%',
+        paddingBottom: '10%',
+    },
     Title: { color: 'black', alignSelf: 'center', fontSize: 30, paddingBottom: '5%' },
 })
 

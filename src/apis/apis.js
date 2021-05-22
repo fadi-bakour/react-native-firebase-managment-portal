@@ -46,7 +46,7 @@ class Apis {
                     UploadData(Data.photo, 'identification', Data)
                 }).catch((err) => {
                     console.log(err);
-                    ToastService('error', 'Something Went wrong!');
+                    ToastService('error', 'invalid credentials or email already in use!');
                 })
             }
         };

@@ -14,7 +14,8 @@ const ProductImage = ({ photo, setPhoto }) => {
         <View>
             {photo == null ? (
                 <TouchableOpacity style={styles.imageUpload} onPress={() => ImagePicker.openPicker({
-                    cropping: false
+                    cropping: false,
+                    multiple: false
                 }).then(image => {
                     if (image.mime == 'image/jpeg' || image.mime == 'image/png' || image.mime == 'image/jpg') {
                         setPhoto(image.path)
@@ -31,7 +32,8 @@ const ProductImage = ({ photo, setPhoto }) => {
                 </TouchableOpacity>
             ) : (
                 <TouchableOpacity style={styles.imageUpload} onPress={() => ImagePicker.openPicker({
-                    cropping: false
+                    cropping: false,
+                    multiple: false
                 }).then(image => {
                     if (image.mime == 'image/jpeg' || image.mime == 'image/png' || image.mime == 'image/jpg') {
                         setPhoto(image.path)
@@ -44,7 +46,7 @@ const ProductImage = ({ photo, setPhoto }) => {
                         source={{ uri: photo }}
                         style={styles.previewImage}
                     />
-                    <Text style={styles.imageText}>click to select different image</Text>
+                    <Text style={styles.imageText}>Select image</Text>
 
                 </TouchableOpacity>
             )

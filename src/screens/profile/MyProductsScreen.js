@@ -51,7 +51,12 @@ const MyProductsScreen = ({ navigation }) => {
 }
 
 const styles = StyleSheet.create({
-    container: { flex: 1, padding: '5%' },
+    container: { 
+    flex: 1,
+    paddingTop: '10%',
+    paddingBottom: '10%',
+    
+    },
     Title: { color: 'black', alignSelf: 'center', fontSize: 30, paddingBottom: '5%' },
 })
 

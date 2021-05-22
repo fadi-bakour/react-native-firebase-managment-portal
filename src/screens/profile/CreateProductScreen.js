@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         paddingTop: '10%',
         paddingBottom: '10%',
-        flex: 1
+        flex: 1,
     },
     Title: { color: 'black', alignSelf: 'center', fontSize: 20 },
     SubTitle: { color: 'black', alignSelf: 'center', fontSize: 15 },

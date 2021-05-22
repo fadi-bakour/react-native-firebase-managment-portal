@@ -17,6 +17,7 @@ const Header = ({ navigation }) => {
 const styles = StyleSheet.create({
     container: {
         marginRight: 'auto',
+        marginLeft:'5%'
     }
 });
 

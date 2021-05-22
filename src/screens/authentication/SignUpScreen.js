@@ -26,7 +26,7 @@ const SignUpScreen = ({ navigation }) => {
   const [c_password, setC_Password] = useState('')
 
   function NextStep() {
-    if (name.trim() != '' && userName.trim() != '' && address.trim() != '' && postcode.trim() != '' && city.trim() != '' && country.trim() != '' && email.trim() != '' && password.trim() != '' && c_password.trim() != '' && photo.trim() != '' && password == c_password) {
+    if (name.trim() != '' && userName.trim() != '' && address.trim() != '' && postcode.trim() != '' && city.trim() != '' && country.trim() != '' && email.trim() != '' && password.trim() != '' && c_password.trim() != '' && photo.trim() != '/' && photo.trim() != '' && password == c_password) {
       navigation.navigate('PreviewSignupInfo', { name, userName, address, postcode, city, country, email, password, c_password, photo })
     } else {
       ToastService('error', 'please fill all required information and make sure password match');
