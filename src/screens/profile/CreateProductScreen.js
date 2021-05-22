@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import {
     StyleSheet,
     Text,
@@ -11,18 +11,25 @@ import apis from '../../apis/apis'
 
 import TextInput from '../../components/TextInput';
 import ProductImage from '../../components/ProductImage';
+import { useIsFocused } from '@react-navigation/native';
 
-const CreateProductScreen = ({navigation}) => {
+const CreateProductScreen = ({ navigation }) => {
+    const isFocused = useIsFocused();
+
+    useEffect(() => {
+        setTitle('');
+        setDescription('');
+        setPhoto(null);
+    }, [isFocused]);
 
     function CreateProduct(data) {
         apis.CreateUserProduct(data);
-        navigation.navigate('MyProducts')
     }
 
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
 
-    const [photo, setPhoto] = useState();
+    const [photo, setPhoto] = useState(null);
 
     return (
         <View style={styles.container}>

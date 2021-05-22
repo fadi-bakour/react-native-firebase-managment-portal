@@ -74,7 +74,6 @@ const ProfileScreen = ({navigation}) => {
         <TouchableOpacity style={styles.btnDiv}
           onPress={() =>{ 
             updateData({ name, userName, address, postcode, city, country, email, photo,path })
-            navigation.navigate('Home');
           }}>
           <Text style={styles.btn}>Save</Text>
         </TouchableOpacity>
