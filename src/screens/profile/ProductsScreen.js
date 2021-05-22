@@ -15,8 +15,11 @@ const ProductsScreen = () => {
             let firstLayer = Object.keys(res).length;
             for (let i = 0; i < firstLayer; i++) {
                 const Keys = res[Object.keys(res)[i]];
-                const values = Keys[Object.keys(Keys)[0]];
-                array.push(values);
+                let secondLayer = Object.keys(Keys).length;
+                for (let j = 0; j < secondLayer; j++) {
+                    let obj = Keys[Object.keys(Keys)[j]];
+                    array.push(obj);
+                }
             }
             setItems(array);
         })
@@ -42,8 +45,8 @@ const ProductsScreen = () => {
 }
 
 const styles = StyleSheet.create({
-    container:{ flex:1,padding:'5%' },
-    Title: { color: 'black', alignSelf: 'center', fontSize: 30,paddingBottom:'5%' },
+    container: { flex: 1, padding: '5%' },
+    Title: { color: 'black', alignSelf: 'center', fontSize: 30, paddingBottom: '5%' },
 })
 
 export default ProductsScreen
