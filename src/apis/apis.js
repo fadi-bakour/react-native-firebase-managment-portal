@@ -172,6 +172,18 @@ class Apis {
                 });
         })();
     };
+
+    getMyProducts = () => {
+        return (async () => {
+            return await database()
+                .ref('/products/' + auth().currentUser['uid'])
+                .once('value')
+                .then(snapshot => {
+                    return snapshot.val();
+                });
+        })();
+    };
+
 }
 
 const apis = new Apis(); // TODO: create instance in another place
