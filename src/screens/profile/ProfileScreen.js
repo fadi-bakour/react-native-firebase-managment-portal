@@ -9,41 +9,48 @@ import apis from '../../apis/apis'
 
 import TextInput from '../../components/TextInput';
 import ImageInput from '../../components/ImageInput';
+import ToastService from '../../services/ToastService';
 
 
-const ProfileScreen = ({navigation}) => {
+const ProfileScreen = ({ navigation }) => {
 
   function updateData(data) {
-    apis.UpdateUserData(data);
+
+    if (data.name.trim() != '' && data.userName.trim() != '' && data.address.trim() != '' && data.postcode.trim() != '' && data.city.trim() != '' && data.country.trim() != '' && data.email.trim() != '' && data.photo != null && data.photo.trim() != '' && data.path != '') {
+      apis.UpdateUserData(data);
+    } else {
+      ToastService('error', 'please fill all required information');
+    }
+
+
   }
 
 
   useEffect(() => {
-    apis.userData().then((res) => { 
-      setData(res); 
-      setName(res.name); 
-      setUserName(res.userName); 
-      setAddress(res.address); 
-      setPostcode(res.postcode); 
-      setCity(res.city); 
-      setCountry(res.country); 
-      setEmail(res.email); 
-      setPhoto(res.photo); 
-      setPath(res.path); 
-
+    apis.userData().then((res) => {
+      setData(res);
+      setName(res.name);
+      setUserName(res.userName);
+      setAddress(res.address);
+      setPostcode(res.postcode);
+      setCity(res.city);
+      setCountry(res.country);
+      setEmail(res.email);
+      setPhoto(res.photo);
+      setPath(res.path);
     });
   }, []);
 
   const [data, setData] = useState({
-    name: 'name',
-    userName: 'username',
-    address: 'address',
-    postcode: 'post',
+    name: '',
+    userName: '',
+    address: '',
+    postcode: '',
     city: '',
     country: '',
     email: '',
     photo: '/',
-    path:''
+    path: ''
   });
 
   const [name, setName] = useState();
@@ -72,8 +79,8 @@ const ProfileScreen = ({navigation}) => {
         <ImageInput photo={photo} setPhoto={setPhoto} />
 
         <TouchableOpacity style={styles.btnDiv}
-          onPress={() =>{ 
-            updateData({ name, userName, address, postcode, city, country, email, photo,path })
+          onPress={() => {
+            updateData({ name, userName, address, postcode, city, country, email, photo, path })
           }}>
           <Text style={styles.btn}>Save</Text>
         </TouchableOpacity>

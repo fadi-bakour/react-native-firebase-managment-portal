@@ -10,6 +10,8 @@ import {
 import TextInput from '../../components/TextInput';
 import ImageInput from '../../components/ImageInput';
 
+import ToastService from '../../services/ToastService';
+
 const SignUpScreen = ({ navigation }) => {
   const [photo, setPhoto] = useState('/');
   const [name, setName] = useState('')
@@ -22,6 +24,16 @@ const SignUpScreen = ({ navigation }) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [c_password, setC_Password] = useState('')
+
+  function NextStep() {
+    if (name.trim() != '' && userName.trim() != '' && address.trim() != '' && postcode.trim() != '' && city.trim() != '' && country.trim() != '' && email.trim() != '' && password.trim() != '' && c_password.trim() != '' && photo.trim() != '' && password == c_password) {
+      navigation.navigate('PreviewSignupInfo', { name, userName, address, postcode, city, country, email, password, c_password, photo })
+    } else {
+      ToastService('error', 'please fill all required information and make sure password match');
+    }
+  }
+
+
 
   return (
     <View style={styles.container}>
@@ -45,7 +57,7 @@ const SignUpScreen = ({ navigation }) => {
         <ImageInput photo={photo} setPhoto={setPhoto} />
 
         <TouchableOpacity style={styles.btnDiv}
-          onPress={() => navigation.navigate('PreviewSignupInfo', { name, userName, address, postcode, city, country, email, password, c_password, photo })}>
+          onPress={() => NextStep()}>
           <Text style={styles.btn}>Preview before submit</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.SignUpDiv} onPress={() => navigation.navigate('SignInScreen')}>

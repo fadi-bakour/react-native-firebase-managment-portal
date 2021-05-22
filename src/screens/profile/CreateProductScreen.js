@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     StyleSheet,
     Text,
@@ -12,6 +12,7 @@ import apis from '../../apis/apis'
 import TextInput from '../../components/TextInput';
 import ProductImage from '../../components/ProductImage';
 import { useIsFocused } from '@react-navigation/native';
+import ToastService from '../../services/ToastService';
 
 const CreateProductScreen = ({ navigation }) => {
     const isFocused = useIsFocused();
@@ -23,7 +24,13 @@ const CreateProductScreen = ({ navigation }) => {
     }, [isFocused]);
 
     function CreateProduct(data) {
-        apis.CreateUserProduct(data);
+
+        if (data.title.trim() != '' && data.description.trim() != ''  && data.photo != null && data.photo.trim() != '' ) {
+            apis.CreateUserProduct(data);
+        } else {
+            ToastService('error', 'please fill all required information');
+        }
+
     }
 
     const [title, setTitle] = useState('')

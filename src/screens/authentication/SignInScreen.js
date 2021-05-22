@@ -10,12 +10,12 @@ import TextInput from '../../components/TextInput';
 import apis from '../../apis/apis'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import ToastService from '../../services/ToastService';
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      reduxSignIn: (email, password) =>
-        apis.loginAuth(email, password),
+      reduxSignIn: (email, password) => apis.loginAuth(email, password)
     },
     dispatch,
   );
@@ -34,7 +34,13 @@ const SignInScreen = ({ navigation, reduxSignIn }) => {
       </Text>
         <TextInput placeholder="Email" onChange={setEmail} defaultValue={email} value={email} icon={{ type: 'font-awesome', name: 'envelope', color: 'black' }} secureTextEntry={false} />
         <TextInput placeholder="Password" onChange={setPassword} defaultValue={password} value={password} icon={{ type: 'font-awesome', name: 'key', color: 'black' }} secureTextEntry={true} />
-        <TouchableOpacity style={styles.btnDiv} onPress={() => { reduxSignIn(email, password) }}>
+        <TouchableOpacity style={styles.btnDiv} onPress={() => {
+          if (email.trim() != '' && password.trim() != '') {
+            reduxSignIn(email, password)
+          } else {
+            ToastService('error', 'please fill all required information');
+          }
+        }}>
           <Text style={styles.btn}>Log in</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.SignUpDiv} onPress={() => navigation.navigate('SignUpScreen')}>
