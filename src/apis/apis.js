@@ -8,7 +8,7 @@ import storage from '@react-native-firebase/storage';
 
 class Apis {
     signUpAuth = ({ number, OTP, UserData }) => {
-        Data = UserData.UserData;
+        let Data = UserData.UserData;
         return (dispatch) => {
             if (number != OTP) {
                 ToastService('error', 'OTP does not match');
@@ -104,7 +104,7 @@ class Apis {
     };
 
     UpdateUserData = (UserData) => {
-        Data = UserData;
+        let Data = UserData;
         const UploadData = (path, imageName) => {
             let reference = storage().ref('users/' + auth().currentUser['uid'] + '/' + imageName);
             let task = reference.putFile(path);
@@ -161,6 +161,17 @@ class Apis {
         }
         UploadData(Data.photo, Data.title);
     }
+
+    getAllProducts = () => {
+        return (async () => {
+            return await database()
+                .ref('/products')
+                .once('value')
+                .then(snapshot => {
+                    return snapshot.val();
+                });
+        })();
+    };
 }
 
 const apis = new Apis(); // TODO: create instance in another place
