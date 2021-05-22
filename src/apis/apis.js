@@ -99,6 +99,8 @@ class Apis {
                 .once('value')
                 .then(snapshot => {
                     return snapshot.val();
+                }).catch((err) => {
+                    console.log(err)
                 });
         })();
     };
@@ -169,7 +171,9 @@ class Apis {
                 .once('value')
                 .then(snapshot => {
                     return snapshot.val();
-                });
+                }).catch((err) => {
+                    console.log(err)
+                }); 
         })();
     };
 
@@ -180,6 +184,8 @@ class Apis {
                 .once('value')
                 .then(snapshot => {
                     return snapshot.val();
+                }).catch((err) => {
+                    console.log(err)
                 });
         })();
     };
